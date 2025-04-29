@@ -1,7 +1,6 @@
 import globals from 'globals'
 import tseslint from 'typescript-eslint'
 import { defineConfig } from 'eslint/config'
-import unicorn from 'eslint-plugin-unicorn';
 
 const targetExt = 'ts,tsx,vue'
 const targetFiles = `**/*.{${targetExt}}`
@@ -42,23 +41,6 @@ export default defineConfig([
       'space-infix-ops': 'error',
     },
     languageOptions: { globals: globals.browser },
-  },
-  // ファイル名の制約
-  {
-    files: [targetFiles],
-    plugins: {
-      unicorn,
-    },
-    rules: {
-      'unicorn/filename-case': [
-        'error',
-        {
-          cases: {
-            pascalCase: true
-          },
-        },
-      ],
-    },
   },
   tseslint.configs.recommended,
 ])
