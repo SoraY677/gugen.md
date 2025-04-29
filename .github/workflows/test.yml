@@ -1,0 +1,28 @@
+name: Test
+
+on:
+  push:
+    paths:
+      - '*'
+    branches-ignore:
+      - "release"
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3.1.1
+        with:
+          node-version: v20.11.0
+
+      - name: Install depencies
+        run: yarn install
+
+      - name: Lint
+        run: yarn lint
