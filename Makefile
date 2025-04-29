@@ -27,10 +27,10 @@ stop:
 
 .PHONY: lint
 lint:
-	make exec COMMAND="yarn lint"
+	make exec CONTAINER="root" COMMAND="yarn lint"
 .PHONY: lint-fix
 lint-fix:
-	make exec COMMAND="yarn lint:fix"
+	make exec CONTAINER="root" COMMAND="yarn lint:fix"
 
 #
 # Setup 
