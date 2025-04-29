@@ -8,7 +8,7 @@ endif
 #
 .PHONY: exec
 exec:
-	docker compose exec root bash -c "$(COMMAND)"
+	docker compose exec ${CONTAINER} bash -c "$(COMMAND)"
 
 #
 # Main
@@ -35,15 +35,11 @@ lint-fix:
 #
 # Setup 
 #
-.PHONY: setup-client
-setup-client:
-	make exec COMMAND="yarn create vite client"
-
-.PHONY: setup-server
-setup-server:
-	make exec COMMAND="yarn create vite server"
+.PHONY: setup-vite
+setup-vite:
+	make exec CONTAINER="root" COMMAND="yarn create vite ${PROJECT_NAME}"
 
 .PHONY: setup
 setup:
-	docker run -i -v .:/app -w /app --rm node:22 bash -c "yarn setup"
+	docker run -i -v .:/app -w /app --rm node:22 bash -c "yarn && yarn setup"
 

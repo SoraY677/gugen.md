@@ -6,24 +6,22 @@ services:
         - ./:/app
       tty: true
 
-    server:
+    demo:
       image: node:22
-      working_dir: /server
+      working_dir: /demo
       depends_on: 
         - root
       tty: true
       volumes:
-        - ./:/server
+        - ./demo:/demo
         - ./tsconfig.json:/tsconfig.json:ro
-      # command: yarn dev
 
-    client:
+    library:
       image: node:22
-      working_dir: /client
+      working_dir: /library
       depends_on: 
-        - root
+        - demo
       tty: true
       volumes:
-        - ./:/client
+        - ./library:/library
         - ./tsconfig.json:/tsconfig.json:ro
-      # command: yarn dev
